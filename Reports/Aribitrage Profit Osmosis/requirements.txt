@@ -1,0 +1,4 @@
+# Requirements
+- Total arbitrage earnings per address
+- Breakdown of profits in many dimensions
+- Longer arbitrage paths
