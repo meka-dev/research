@@ -1,4 +1,10 @@
 # Requirements
 - Total arbitrage earnings per address
 - Breakdown of profits in many dimensions
+	- By path
+	- By total pat liqduity
+	- By first pool liquidity
+	- By last pool liquidity
+	- By number of hops (currently only 3 trades)
 - Longer arbitrage paths
+
