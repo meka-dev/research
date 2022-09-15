@@ -19,7 +19,7 @@ ASSUMPTION:
  
 -- Profit of arbitraging OSMO trades
 select
-   * 
+   max(profit)
 from
    (
       with trades as 
@@ -78,12 +78,12 @@ from
                            end
                            as Status, count(*) as trades 
                         from
-                           `immaculate - 355716.osmosis_1.event_attributes` ea 
+                           `immaculate-355716.osmosis_1.event_attributes` ea 
                            left join
-                              `immaculate - 355716.osmosis_1.blocks` b 
+                              `immaculate-355716.osmosis_1.blocks` b 
                               on b.block_height = cast(ea.block_height as STRING) 
                            inner join
-                              `immaculate - 355716.osmosis_1.transactions` t 
+                              `immaculate-355716.osmosis_1.transactions` t 
                               on t.tx_id = ea.tx_id 
                         where
                            ea.event_type = 'token_swapped' 
@@ -132,16 +132,16 @@ from
                      order by
                         ea.event_index, ea.attribute_key) as rk, TIMESTAMP_TRUNC(b.block_timestamp, hour, "UTC") as Hours 
                      from
-                        `immaculate - 355716.osmosis_1.event_attributes` ea 
+                        `immaculate-355716.osmosis_1.event_attributes` ea 
                         inner join
-                           `immaculate - 355716.osmosis_1.event_attributes` ea2 
+                           `immaculate-355716.osmosis_1.event_attributes` ea2 
                            on ea2.TX_ID = ea.TX_ID 
                            and ea2.event_index = ea.event_index 
                         inner join
-                           `immaculate - 355716.osmosis_1.blocks` b 
+                           `immaculate-355716.osmosis_1.blocks` b 
                            on b.block_height = cast(ea.block_height as STRING) 
                         inner join
-                           `immaculate - 355716.osmosis_1.transactions` t 
+                           `immaculate-355716.osmosis_1.transactions` t 
                            on t.tx_id = ea.tx_id 
                      where
                         ea.event_type = 'token_swapped' 
@@ -212,10 +212,10 @@ from
       where
          t2.amount - t1.amount > 0 
          and t2.amount - t1.amount is not null 
-         and t1.token in 
-         (
-            'ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2', 'uosmo', 'ibc/6AE98883D4D5D5FF9E50D7130F1305DA2FFA0C652D1DD9C123657C6B4EB2DF8A', 'ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED'
-         )
+         and t1.token = 'uosmo'
+         --(
+        --    'ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2', 'uosmo', 'ibc/6AE98883D4D5D5FF9E50D7130F1305DA2FFA0C652D1DD9C123657C6B4EB2DF8A', 'ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED'
+         --)
          and t1.is_partition is not null 
       order by
          10 desc, 4 asc, 5 asc
