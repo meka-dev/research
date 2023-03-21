@@ -8,7 +8,6 @@ The repo will include:
 * Doocumentation and maintenance of any code used to perform such analysis (SQL queries from Numia, Python Notebooks, Google Sheets, etc.)
 * Please reach out to @therealpixelverse in TG for any questions
 
-
 ## Running SQL queries
 If you want to replicate all SQL queries please refer to https://docs.numia.xyz/overview/what-is-numia-data to get access to all public datasets from Nhmia.
 
